@@ -26,8 +26,6 @@ public record NamespacedPreference<T>(NamespaceID namespaceID, T value) {
      * @param namespaceID the namespace
      * @param value the default value
      */
-    public NamespacedPreference(NamespaceID namespaceID, T value) {
-        this.namespaceID = namespaceID;
-        this.value = value;
+    public NamespacedPreference {
     }
 }
