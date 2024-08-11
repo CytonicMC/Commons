@@ -39,5 +39,8 @@ public enum ChatChannel {
     STAFF(Component.text("Staff > ", NamedTextColor.LIGHT_PURPLE));
 
     private final Component prefix;
-    ChatChannel(Component prefix) {this.prefix = prefix;}
+
+    ChatChannel(Component prefix) {
+        this.prefix = prefix;
+    }
 }
