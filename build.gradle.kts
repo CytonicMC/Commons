@@ -78,7 +78,14 @@ tasks.withType<JavaCompile> {
 }
 tasks.withType<Javadoc> {
     val javadocOptions = options as CoreJavadocOptions
+    val o = options as StandardJavadocDocletOptions
 
     javadocOptions.addStringOption("source", "21")
     javadocOptions.addBooleanOption("-enable-preview", true)
+
+    o.tags(
+        "apiNote:a:API Note:",
+        "implSpec:a:Implementation Requirements:",
+        "implNote:a:Implementation Note:",
+    )
 }
