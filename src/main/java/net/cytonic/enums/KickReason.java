@@ -18,7 +18,11 @@ public enum KickReason {
     /**
      * Kicked due to a world validation issue
      */
-    INVALID_WORLD(true);
+    INVALID_WORLD(true),
+    /**
+     * Kicked due to the kick command
+     */
+    KICKED_BY_COMMAND(false);
 
     private final boolean rescuable;
 
