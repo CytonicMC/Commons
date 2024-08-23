@@ -22,7 +22,7 @@ public enum KickReason {
     /**
      * Kicked due to the kick command
      */
-    KICKED_BY_COMMAND(false);
+    COMMAND(false);
 
     private final boolean rescuable;
 
