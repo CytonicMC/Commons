@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains:annotations:25.0.0")
+    implementation("org.jetbrains:annotations:26.0.1")
     implementation("com.google.code.gson:gson:2.11.0")
     api("net.minestom:minestom-snapshots:1_21-9219e96f76")
     compileOnly("org.projectlombok:lombok:1.18.34") // lombok
