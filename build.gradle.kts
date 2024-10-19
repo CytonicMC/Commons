@@ -14,7 +14,7 @@ repositories {
 dependencies {
     implementation("org.jetbrains:annotations:25.0.0")
     implementation("com.google.code.gson:gson:2.11.0")
-    api("net.minestom:minestom-snapshots:1_21-9219e96f76")
+    api("net.minestom:minestom-snapshots:7320437640")
     compileOnly("org.projectlombok:lombok:1.18.34") // lombok
     annotationProcessor("org.projectlombok:lombok:1.18.34") // lombok
     implementation("net.kyori:adventure-text-minimessage:4.17.0")// better components
