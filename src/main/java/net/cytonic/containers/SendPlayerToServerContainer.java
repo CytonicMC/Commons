@@ -17,15 +17,18 @@ import java.util.UUID;
 @SuppressWarnings("preview")
 public class SendPlayerToServerContainer implements Container {
     private final String id = "SEND_PLAYER";
-    private UUID player=null;
-    private CytonicServer server=null;
+    private UUID player = null;
+    private CytonicServer server = null;
 
     @Nullable
-    private UUID instance=null;
+    private UUID instance = null;
 
     /**
      * Creates an instance of this container
      *
+     * @param player the player's uuid
+     * @param server the server to send the player to
+     * @param instance the uuid of the instance to send the player tor
      * @return the created object instance
      */
     public static SendPlayerToServerContainer create(UUID player, CytonicServer server, UUID instance) {

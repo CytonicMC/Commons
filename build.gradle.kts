@@ -7,14 +7,15 @@ plugins {
 group = "net.cytonic"
 version = "1.7"
 
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation("org.jetbrains:annotations:24.1.0")
+    implementation("org.jetbrains:annotations:26.0.1")
     implementation("com.google.code.gson:gson:2.11.0")
-    api("net.minestom:minestom-snapshots:1_21-9219e96f76")
+    api("net.minestom:minestom-snapshots:dba90a461b")
     compileOnly("org.projectlombok:lombok:1.18.34") // lombok
     annotationProcessor("org.projectlombok:lombok:1.18.34") // lombok
     implementation("net.kyori:adventure-text-minimessage:4.17.0")// better components
