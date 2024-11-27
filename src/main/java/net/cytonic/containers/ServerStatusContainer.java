@@ -1,19 +1,26 @@
 package net.cytonic.containers;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import net.cytonic.objects.CytonicServer;
-import net.cytonic.objects.ServerGroup;
+import org.jetbrains.annotations.Nullable;
 
-public record ServerStatusContainer(String serverName, net.cytonic.containers.ServerStatusContainer.Mode mode,
-                                    String ip, int port, ServerGroup group) {
+import java.time.Instant;
 
+// type serves as a group now
+public record ServerStatusContainer(String type, String ip, String id, int port, @Nullable Instant last_seen) {
+
+    private static final Gson GSON = new GsonBuilder()
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX") // very important for interfacing with Go's time.Time
+            .serializeNulls() // also allows us to send a null time.
+            .create();
 
     public static ServerStatusContainer deserialize(String json) {
-        return new Gson().fromJson(json, ServerStatusContainer.class);
+        return GSON.fromJson(json, ServerStatusContainer.class);
     }
 
     public String serialize() {
-        return new Gson().toJson(this);
+        return GSON.toJson(this);
     }
 
     @Override
@@ -22,11 +29,6 @@ public record ServerStatusContainer(String serverName, net.cytonic.containers.Se
     }
 
     public CytonicServer server() {
-        return new CytonicServer(ip, serverName, port);
-    }
-
-    public enum Mode {
-        START,
-        STOP
+        return new CytonicServer(ip, id, port);
     }
 }

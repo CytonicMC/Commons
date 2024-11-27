@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "net.cytonic"
-version = "1.6.1"
+version = "1.7"
 
 repositories {
     mavenCentral()
