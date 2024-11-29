@@ -1,28 +1,23 @@
 package net.cytonic.containers;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import net.cytonic.objects.CytonicServer;
-import net.cytonic.objects.ServerGroup;
+import org.jetbrains.annotations.Nullable;
 
-/**
- * The container for when a server starts or stops
- * @param serverName the name of the server
- * @param mode whether the server is starting or stopping
- * @param ip the ip of the server
- * @param port the port of the server
- * @param group the {@link ServerGroup} of the server
- */
-public record ServerStatusContainer(String serverName, net.cytonic.containers.ServerStatusContainer.Mode mode,
-                                    String ip, int port, ServerGroup group) {
+import java.time.Instant;
 
-    /**
-     * Converts a serialized string into a {@link ServerStatusContainer}
-     *
-     * @param json The serialized string
-     * @return the container object
-     */
+// type serves as a group now
+public record ServerStatusContainer(String type, String ip, String id, int port, @Nullable Instant last_seen) {
+
+    private static final Gson GSON = new GsonBuilder()
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX") // very important for interfacing with Go's time.Time
+            .serializeNulls() // also allows us to send a null time.
+            .create();
+
+
     public static ServerStatusContainer deserialize(String json) {
-        return new Gson().fromJson(json, ServerStatusContainer.class);
+        return GSON.fromJson(json, ServerStatusContainer.class);
     }
 
     /**
@@ -31,7 +26,7 @@ public record ServerStatusContainer(String serverName, net.cytonic.containers.Se
      * @return the serialized string
      */
     public String serialize() {
-        return new Gson().toJson(this);
+        return GSON.toJson(this);
     }
 
     /**
@@ -52,20 +47,6 @@ public record ServerStatusContainer(String serverName, net.cytonic.containers.Se
      * @see CytonicServer
      */
     public CytonicServer server() {
-        return new CytonicServer(ip, serverName, port);
-    }
-
-    /**
-     * Whether the server is starting or stopping
-     */
-    public enum Mode {
-        /**
-         * When the server starts
-         */
-        START,
-        /**
-         * When the server stops
-         */
-        STOP
+        return new CytonicServer(ip, id, port);
     }
 }
